@@ -3,9 +3,9 @@
     <mat-nav-list>
       <ng-container [ngSwitch]="stateService.userData | async">
         <ng-container *ngSwitchDefault>
-          <mat-list-item (click)="logout()">
-            <span >Logout</span>
-          </mat-list-item>
+          <a mat-list-item routerLink="/category-add" routerLinkActive="active">Add Category</a>
+          <a mat-list-item routerLink="/categories" routerLinkActive="active">Categories</a>
+          <mat-list-item (click)="logout()">Logout</mat-list-item>
         </ng-container>
         <ng-container *ngSwitchCase="null">
           <a mat-list-item routerLink="/login" routerLinkActive="active">Login</a>

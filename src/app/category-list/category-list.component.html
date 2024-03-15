@@ -1,0 +1,42 @@
+<div class="mat-elevation-z8" style="margin: 20px">
+  <table mat-table [dataSource]="categories">
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let category">{{ category.id }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let category">{{ category.name }}</td>
+    </ng-container>
+
+    <!-- Rating Gained Column -->
+    <ng-container matColumnDef="ratingGained">
+      <th mat-header-cell *matHeaderCellDef>Rating Gained</th>
+      <td mat-cell *matCellDef="let category">{{ category.ratingGained }}</td>
+    </ng-container>
+
+    <!-- Required Rating Column -->
+    <ng-container matColumnDef="requiredRating">
+      <th mat-header-cell *matHeaderCellDef>Required Rating</th>
+      <td mat-cell *matCellDef="let category">{{ category.requiredRating }}</td>
+    </ng-container>
+
+    <!-- Is Requiring Premium Column -->
+    <ng-container matColumnDef="isRequiringPremium">
+      <th mat-header-cell *matHeaderCellDef>Is Requiring Premium</th>
+      <td mat-cell *matCellDef="let category">{{ category.isRequiringPremium }}</td>
+    </ng-container>
+
+    <!-- Date Created Column -->
+    <ng-container matColumnDef="dateCreated">
+      <th mat-header-cell *matHeaderCellDef>Date Created</th>
+      <td mat-cell *matCellDef="let category">{{ category.dateCreated | date }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="'/category/' + row.id"></tr>
+  </table>
+</div>

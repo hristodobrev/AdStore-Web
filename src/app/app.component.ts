@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StateService } from './state.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { StateService } from './state.service';
 export class AppComponent implements OnInit {
   title = 'AdStore-Web';
 
-  constructor(public stateService: StateService) {}
+  constructor(public stateService: StateService, private router: Router) {}
 
   ngOnInit(): void {
     let token = localStorage.getItem('token');
@@ -27,5 +28,6 @@ export class AppComponent implements OnInit {
   logout() {
     this.stateService.userData.next(null);
     localStorage.clear();
+    this.router.navigate(['login']);
   }
 }

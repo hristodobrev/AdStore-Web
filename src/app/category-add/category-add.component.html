@@ -1,0 +1,36 @@
+<form [formGroup]="categoryForm" (ngSubmit)="saveCategory()">
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="Enter category name">
+      <mat-error *ngIf="categoryForm.get('name')?.invalid && categoryForm.get('name')?.touched">
+        <span *ngIf="categoryForm.get('name')?.errors?.['required']">Name is required</span>
+        <span *ngIf="categoryForm.get('name')?.errors?.['maxlength']">Name cannot exceed 100 characters</span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Rating Gained</mat-label>
+      <input matInput type="number" formControlName="ratingGained" placeholder="Enter rating gained">
+      <mat-error *ngIf="categoryForm.get('ratingGained')?.invalid && categoryForm.get('ratingGained')?.touched">
+        <span *ngIf="categoryForm.get('ratingGained')?.errors?.['required']">Rating Gained is required</span>
+        <span *ngIf="categoryForm.get('ratingGained')?.errors?.['min']">Rating Gained must be a non-negative number</span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Required Rating</mat-label>
+      <input matInput type="number" formControlName="requiredRating" placeholder="Enter required rating">
+      <mat-error *ngIf="categoryForm.get('requiredRating')?.invalid && categoryForm.get('requiredRating')?.touched">
+        <span *ngIf="categoryForm.get('requiredRating')?.errors?.['required']">Required Rating is required</span>
+        <span *ngIf="categoryForm.get('requiredRating')?.errors?.['min']">Required Rating must be a non-negative number</span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-checkbox formControlName="isRequiringPremium">Is Requiring Premium</mat-checkbox>
+  </div>
+  <button mat-raised-button color="primary" type="submit">Create Category</button>
+</form>

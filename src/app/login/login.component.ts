@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StateService } from '../state.service';
+import { DataService } from '../data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { StateService } from '../state.service';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient, private stateService: StateService) {
+  constructor(private formBuilder: FormBuilder, private dataService: DataService, private stateService: StateService, private router: Router) {
     this.loginForm = this.formBuilder.group({
       username: [null, [Validators.required, Validators.maxLength(100)]],
       password: [null, [Validators.required]]
@@ -20,7 +21,7 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.httpClient.post('http://localhost:5081/api/auth/login', this.loginForm.value)
+      this.dataService.post('api/auth/login', this.loginForm.value)
         .subscribe((data: any) => {
           localStorage['token'] = data.token;
           localStorage['username'] = data.username;
@@ -31,6 +32,8 @@ export class LoginComponent {
             username: data.username,
             expireDate: new Date(data.expireDate)
           });
+
+          this.router.navigate(['categories']);
         }, error => console.log(error?.error));
 
       //this.loginForm.reset();
