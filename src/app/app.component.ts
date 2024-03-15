@@ -22,6 +22,8 @@ export class AppComponent implements OnInit {
           username,
           expireDate
         });
+      } else {
+        this.stateService.userData.next(null);
       }
   }
 

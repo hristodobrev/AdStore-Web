@@ -33,7 +33,7 @@ export class LoginComponent {
             expireDate: new Date(data.expireDate)
           });
 
-          this.router.navigate(['categories']);
+          setTimeout(() => { this.router.navigate(['categories']) }, 10);
         }, error => console.log(error?.error));
 
       //this.loginForm.reset();
